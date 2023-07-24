@@ -1,5 +1,5 @@
 import ProjectDescription
-
+/*
 let nameAttribute: Template.Attribute = .required("name")
 
 let template = Template(
@@ -16,3 +16,4 @@ let template = Template(
         .file(path: "\(nameAttribute)/Tests/\(nameAttribute)Tests.swift", templatePath: "UnitTests.stencil")
     ]
 )
+*/

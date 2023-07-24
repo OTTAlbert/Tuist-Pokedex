@@ -19,7 +19,7 @@ let authorAttribute: Template.Attribute = .required("author")
 let yearAttribute: Template.Attribute = .optional("year", default: defaultYear)
 let dateAttribute: Template.Attribute = .optional("date", default: defaultDate)
 let companyAttribute: Template.Attribute = .optional("company", default: companyName)
-
+/*
 let template = Template(
     description: "Module template",
     attributes: [
@@ -67,3 +67,4 @@ let template = Template(
         )
     ]
 )
+*/
