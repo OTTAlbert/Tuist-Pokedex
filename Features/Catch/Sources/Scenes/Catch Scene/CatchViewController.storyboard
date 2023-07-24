@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,6 +30,10 @@
                                     <action selector="ballAction" destination="6JY-wC-gpp" eventType="touchUpInside" id="rKr-SQ-uLW"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gotcha" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-d6-ynW">
+                                <rect key="frame" x="6" y="140" width="362" height="317"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ODG-Sk-nvn"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,6 +49,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="sf1-cg-uKF" id="O1H-ss-w2w"/>
                         <outlet property="button" destination="YzX-Yf-1Ql" id="Hw5-Yq-pvw"/>
+                        <outlet property="gotcha" destination="Ftb-d6-ynW" id="fRc-As-lat"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y3d-JN-ISV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,5 +60,6 @@
     <resources>
         <image name="Background" width="800" height="480"/>
         <image name="Ball" width="600" height="600"/>
+        <image name="gotcha" width="668" height="381"/>
     </resources>
 </document>

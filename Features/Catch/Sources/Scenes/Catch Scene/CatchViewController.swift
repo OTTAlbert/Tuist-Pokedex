@@ -14,6 +14,8 @@ public class CatchViewController: UIViewController {
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var button: UIButton!
     
+    @IBOutlet weak var gotcha: UIImageView!
+    
     public var presenter: CatchPresenting?
     private var pokemonView: PokemonView?
     
@@ -24,12 +26,21 @@ public class CatchViewController: UIViewController {
         let buttonImage = UIImage(named: "Ball", in: Bundle(for: CatchViewController.self), with: nil)
         
         button.setImage(buttonImage, for: .normal)
+        
+        gotcha.isHidden = true
     }
     
     @IBAction func ballAction() {
-        dismiss(animated: true) {
-            guard let presenter = self.presenter else { return }
-            presenter.catchPokemonAction()
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseOut) {
+            self.button.frame.origin.y = self.view.frame.midY - self.button.frame.height
+            self.button.transform = CGAffineTransformMakeScale(0.5, 0.5)
+        } completion: { _ in
+            self.gotcha.isHidden = false
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                self.dismiss(animated: true) {
+                    self.presenter?.catchPokemonAction()
+                }
+            }
         }
     }
 }
@@ -40,11 +51,11 @@ extension CatchViewController: CatchView {
         guard let screenPokemon = presenter.pokemon() else { return }
         guard let pokemonView = PokemonView.loadFromNib() else { return }
         
-        pokemonView.name.text = screenPokemon.name
-        pokemonView.height.text = "Height: \(screenPokemon.height)"
-        pokemonView.weight.text = "Weight: \(screenPokemon.weight)"
+        pokemonView.name.text = screenPokemon.name.capitalized
+        pokemonView.height.text = "Высота: \(screenPokemon.height)"
+        pokemonView.weight.text = "Масса: \(screenPokemon.weight)"
         
-        view.addSubview(pokemonView)
+        view.insertSubview(pokemonView, belowSubview: button)
         
         guard let path = screenPokemon.iconPath else { return }
         guard let imageURL = URL(string: path) else { return }
@@ -75,7 +86,6 @@ extension CatchViewController: CatchView {
     func showLeaveItAlert() {
         let alertController = alert(with: Constants.Translations.CatchScene.alreadyHaveItAlertMessageTitle)
         let button = leaveButton(with: Constants.Translations.CatchScene.leaveItButtonTitle)
-        
         alertController.addAction(button)
         present(alertController,
                 animated: true,
@@ -97,9 +107,12 @@ extension CatchViewController: CatchView {
     }
     
     private func alert(with title: String) -> UIAlertController {
-        return UIAlertController(title: title,
-                                 message: nil,
-                                 preferredStyle: .alert)
+        let alert = UIAlertController(title: title,
+                                      message: nil,
+                                      preferredStyle: .alert)
+        
+        alert.view.tintColor = .purple
+        return alert
     }
     
     private func leaveButton(with title: String) -> UIAlertAction {

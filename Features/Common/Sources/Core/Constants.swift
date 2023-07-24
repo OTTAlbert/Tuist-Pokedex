@@ -27,31 +27,31 @@ public struct Constants {
         public static let cancel = "Cancel"
         
         public struct HomeScene {
-            public static let catchTitle = "Catch a Pokemon"
+            public static let catchTitle = "Поймать покемона"
         }
         
         public struct CatchScene {
-            public static let weight = "WEIGHT"
-            public static let height = "HEIGHT"
-            public static let leaveOrCatchAlertMessageTitle = "Do you want to leave it or catch it?"
-            public static let leaveItButtonTitle = "Leave it"
-            public static let catchItButtonTitle = "Catch it!"
-            public static let alreadyHaveItAlertMessageTitle = "You have already caught one of this species, you'll have to leave this one..."
+            public static let weight = "Масса"
+            public static let height = "Высота"
+            public static let leaveOrCatchAlertMessageTitle = "Вы хотите отпустить или поймать?"
+            public static let leaveItButtonTitle = "Отпустить"
+            public static let catchItButtonTitle = "Поймать!"
+            public static let alreadyHaveItAlertMessageTitle = "У вас уже есть такой покемон, вам придется отпустить его..."
             
-            public static let noPokemonFoundAlertTitle = "No Pokemon found, you will have to try again."
+            public static let noPokemonFoundAlertTitle = "Покемон убежал( вы можете попробовать снова."
         }
         
         public struct BackpackScene {
-            public static let title = "Backpack"
-            public static let closeButton = "Close"
+            public static let title = "Рюкзак"
+            public static let closeButton = "Закрыть"
         }
         
         public struct DetailScene {
-            public static let weight = "Weight"
-            public static let height = "Height"
-            public static let date = "Date"
-            public static let experience = "Experience"
-            public static let types = "Types"
+            public static let weight = "Масса"
+            public static let height = "Высота"
+            public static let date = "Дата"
+            public static let experience = "Опыт"
+            public static let types = "Типы"
         }
         
         public struct Error {
@@ -59,7 +59,7 @@ public struct Constants {
             public static let noDataError = "Error: No data received."
             public static let noResultsFound = "No results were found for your search."
             public static let statusCode404 = "404"
-            public static let notFound = "Error 401 Pokemon not found"
+            public static let notFound = "Ошибка 401 Покемон не найден"
             public static let asyncError = "Async Search failed"
         }
     }

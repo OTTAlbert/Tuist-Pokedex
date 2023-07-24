@@ -27,32 +27,32 @@ struct Constants {
         static let cancel = "Cancel"
         
         struct HomeScene {
-            static let catchTitle = "Catch a Pokemon"
+            static let catchTitle = "Поймать покемона"
         }
         
         struct CatchScene {
-            static let weight = "WEIGHT"
-            static let height = "HEIGHT"
-            static let leaveOrCatchAlertMessageTitle = "Do you want to leave it or catch it?"
-            static let leaveItButtonTitle = "Leave it"
-            static let catchItButtonTitle = "Catch it!"
-            static let alreadyHaveItAlertMessageTitle = "You have already caught one of this species, you'll have to leave this one..."
+            static let weight = "Масса"
+            static let height = "Высота"
+            static let leaveOrCatchAlertMessageTitle = "Вы хотите отпустить или поймать?"
+            static let leaveItButtonTitle = "Отпустить"
+            static let catchItButtonTitle = "Поймать!"
+            static let alreadyHaveItAlertMessageTitle = "У вас уже есть такой покемон, вам придется отпустить его..."
             
-            static let noPokemonFoundAlertTitle = "No Pokemon found, you will have to try again."
+            static let noPokemonFoundAlertTitle = "Покемон убежал( вы можете попробовать снова."
             
         }
         
         struct BackpackScene {
-            static let title = "Backpack"
-            static let closeButton = "Close"
+            static let title = "Рюкзак"
+            static let closeButton = "Закрыть"
         }
         
         struct DetailScene {
-            static let weight = "Weight"
-            static let height = "Height"
-            static let date = "Date"
-            static let experience = "Experience"
-            static let types = "Types"
+            static let weight = "Масса"
+            static let height = "Высота"
+            static let date = "Дата"
+            static let experience = "Опыт"
+            static let types = "Типы"
         }
         
         struct Error {
@@ -60,7 +60,7 @@ struct Constants {
             static let noDataError = "Error: No data received."
             static let noResultsFound = "No results were found for your search."
             static let statusCode404 = "404"
-            static let notFound = "Error 401 Pokemon not found"
+            static let notFound = "Ошибка 401 Покемон не найден"
         }
     }
     

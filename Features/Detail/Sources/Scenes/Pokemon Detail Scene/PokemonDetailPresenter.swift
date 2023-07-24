@@ -64,11 +64,10 @@ class PokemonDetailPresenter: PokemonDetailPresenting {
     }
     
     func types() -> String {
-        var allTypes: String = Constants.Translations.DetailScene.types + ": "
-        for type in pokemon.types {
-            allTypes.append(type.capitalized)
-            allTypes.append(", ")
-        }
+        var allTypes: String = Constants.Translations.DetailScene.types + ": "        
+        let types = pokemon.types.map{ $0.capitalized }.joined(separator: ", ")
+        allTypes.append(types)
+        
         return allTypes
     }
 }
