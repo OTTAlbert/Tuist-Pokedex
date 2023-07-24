@@ -23,13 +23,13 @@ class PokedexAsyncSearchUITests: XCTestCase {
 
     func testSearchPokemon() {
         app.buttons["Ball"].tap()
-        app.alerts["Do you want to leave it or catch it?"].buttons["Catch it!"].tap()
+        app.alerts["Вы хотите отпустить или поймать?"].buttons["Поймать!"].tap()
         app.buttons["Catch"].tap()
         app.buttons["Backpack"].tap()
-        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "Charmeleon").element.tap()
-        app.navigationBars["Charmeleon"].buttons["Backpack"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier: "№6 Charmeleon").element.tap()
+        app.navigationBars["Charmeleon"].buttons["Рюкзак"].tap()
         
-        let closeButton = app.navigationBars["Backpack"].buttons["Close"]
+        let closeButton = app.navigationBars["Рюкзак"].buttons["Закрыть"]
         XCTAssertTrue(closeButton.waitForExistence(timeout: 1))
         closeButton.tap()
     }
