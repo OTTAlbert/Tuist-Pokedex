@@ -11,6 +11,37 @@ let examplePath = "Example"
 /// Create your own conventions, e.g: a func that makes sure all shared targets are "static frameworks"
 /// See https://tuist.io/docs/usage/helpers/
 
+
+public enum ExternalDependency: String {
+    case Swinject
+    case JGProgressHUD
+    case FacebookCore
+    case FirebaseCrashlytics
+    case RxSwift
+    case GoogleSignIn
+}
+
+public enum TargetName: String {
+    case Haneke
+    case HomeUI
+    case BackpackUI
+    case Detail
+    case CatchUI
+    case Common
+    case NetworkKit
+}
+
+extension TargetDependency {
+    static func external(_ dependency: ExternalDependency) -> TargetDependency {
+        .external(name: dependency.rawValue)
+    }
+    
+    static func target(_ target: TargetName) -> TargetDependency {
+        .target(name: target.rawValue)
+    }
+}
+
+
 public enum uFeatureTarget {
     case framework
     case unitTests
@@ -18,7 +49,7 @@ public enum uFeatureTarget {
 }
 
 public struct Module {
-    let name: String
+    let name: TargetName
     let path: String
     let frameworkDependancies: [TargetDependency]
     let exampleDependencies: [TargetDependency]
@@ -27,13 +58,13 @@ public struct Module {
     let testResources: [String]
     let targets: Set<uFeatureTarget>
     
-    public init(name: String,
+    public init(name: TargetName,
                 path: String,
-                frameworkDependancies: [TargetDependency],
-                exampleDependencies: [TargetDependency],
-                frameworkResources: [String],
-                exampleResources: [String],
-                testResources: [String],
+                frameworkDependancies: [TargetDependency] = [],
+                exampleDependencies: [TargetDependency] = [],
+                frameworkResources: [String] = [],
+                exampleResources: [String] = [],
+                testResources: [String] = [],
                 targets: Set<uFeatureTarget> = Set([.framework, .unitTests, .exampleApp])) {
         self.name = name
         self.path = path
@@ -50,20 +81,20 @@ extension Project {
     /// Helper function to create the Project for this ExampleApp
     public static func app(name: String,
                            platform: Platform,
-                           externalDependencies: [String],
-                           targetDependancies: [TargetDependency],
-                           moduleTargets: [Module]) -> Project {
+                           externalDependencies: [ExternalDependency] = [],
+                           targetDependancies: [TargetDependency] = [],
+                           moduleTargets: [Module] = []) -> Project {
         
         let organizationName = "Sonomos.com"
-        var dependencies = moduleTargets.map { TargetDependency.target(name: $0.name) }
+        var dependencies = moduleTargets.map { TargetDependency.target(name: $0.name.rawValue) }
         dependencies.append(contentsOf: targetDependancies)
         
         let externalTargetDependencies = externalDependencies.map {
-            TargetDependency.external(name: $0)
+            TargetDependency.external(name: $0.rawValue)
         }
         
         dependencies.append(contentsOf: externalTargetDependencies)
-        
+    
         var targets = makeAppTargets(name: name,
                                      platform: platform,
                                      dependencies: dependencies)
@@ -100,7 +131,7 @@ extension Project {
         let testResourceFilePaths = module.testResources.map { ResourceFileElement.glob(pattern: Path("\(featuresPath)/\(module.path)/Tests/" + $0), tags: [])}
         
         var exampleAppDependancies = module.exampleDependencies
-        exampleAppDependancies.append(.target(name: module.name))
+        exampleAppDependancies.append(.target(name: module.name.rawValue))
         
         let exampleSourcesPath = "\(featuresPath)/\(module.path)/\(examplePath)/Sources"
         
@@ -120,7 +151,7 @@ extension Project {
         if module.targets.contains(.framework) {
             let headers = Headers.headers(public: ["\(frameworkPath)/Sources/**/*.h"])
             
-            targets.append(Target(name: module.name,
+            targets.append(Target(name: module.name.rawValue,
                     platform: platform,
                     product: .framework,
                     bundleId: "\(reverseOrganizationName).\(module.name)",
@@ -141,7 +172,7 @@ extension Project {
                     infoPlist: .default,
                     sources: ["\(frameworkPath)/Tests/**"],
                     resources: ResourceFileElements(resources: testResourceFilePaths),
-                    dependencies: [.target(name: module.name)]))
+                                  dependencies: [.target(name: module.name.rawValue)]))
         }
 
         return targets
